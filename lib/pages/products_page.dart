@@ -40,9 +40,18 @@ class ProductsPage extends StatelessWidget {
                   top: 6,
                   child: CircleAvatar(
                     radius: 8,
-                    child: Text(
-                      "${cartProvider.items.length}",
-                      style: TextStyle(fontSize: 12),
+
+                    // child: Text(
+                    //   "${cartProvider.items.length}",
+                    //   style: TextStyle(fontSize: 12),
+                    // ),
+                    child: Consumer<CartProvider>(
+                      builder: (context, value, child) {
+                        return Text(
+                          cartProvider.items.length.toString(),
+                          style: TextStyle(fontSize: 12),
+                        );
+                      },
                     ),
                   ),
                 ),
