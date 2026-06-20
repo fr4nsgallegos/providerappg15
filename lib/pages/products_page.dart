@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:providerappg15/models/product.dart';
+import 'package:providerappg15/pages/cart_page.dart';
 import 'package:providerappg15/providers/cart_provider.dart';
 
 class ProductsPage extends StatelessWidget {
@@ -16,8 +17,39 @@ class ProductsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = context.watch<CartProvider>();
     return Scaffold(
-      appBar: AppBar(title: Text("Productos")),
+      appBar: AppBar(
+        title: Text("Productos"),
+        actions: [
+          Stack(
+            alignment: AlignmentGeometry.center,
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CartPage()),
+                  );
+                },
+                icon: Icon(Icons.shopping_cart),
+              ),
+              if (cartProvider.items.length > 0)
+                Positioned(
+                  right: 6,
+                  top: 6,
+                  child: CircleAvatar(
+                    radius: 8,
+                    child: Text(
+                      "${cartProvider.items.length}",
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ],
+      ),
       body: ListView.builder(
         itemCount: products.length,
         itemBuilder: (BuildContext context, int index) {
