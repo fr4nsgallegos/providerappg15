@@ -46,10 +46,27 @@ class CartPage extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(20),
                   width: double.infinity,
-                  child: Text(
-                    "Total: S/ ${cartProvider.getTotalPrice().toStringAsFixed(2)}",
-                    textAlign: TextAlign.end,
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  // Ejemplo normal
+                  // child: Text(
+                  //   "Total: S/ ${cartProvider.getTotalPrice().toStringAsFixed(2)}",
+                  //   textAlign: TextAlign.end,
+                  //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  // ),
+
+                  // Ejemplo con selector
+                  child: Selector<CartProvider, double>(
+                    selector: (context, cartProvider) =>
+                        cartProvider.getTotalPrice(),
+                    builder: (context, totalprice, child) {
+                      return Text(
+                        "Total S/ ${totalprice.toStringAsFixed(2)}",
+                        textAlign: TextAlign.end,
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
