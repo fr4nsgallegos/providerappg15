@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:providerappg15/pages/counter_page.dart';
 import 'package:providerappg15/pages/home_page.dart';
+import 'package:providerappg15/pages/products_page.dart';
 import 'package:providerappg15/providers/cart_provider.dart';
 import 'package:providerappg15/providers/counter_provider.dart';
 
@@ -29,7 +30,7 @@ void main() {
       ],
 
       child: MaterialApp(
-        home: CounterPage(),
+        home: ProductsPage(),
         debugShowCheckedModeBanner: false,
       ),
     ),
